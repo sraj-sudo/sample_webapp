@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sample-webapp-lb
+  namespace: sample-webapp
+spec:
+  type: LoadBalancer
+  selector:
+    app: sample-webapp
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
