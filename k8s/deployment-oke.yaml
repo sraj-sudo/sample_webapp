@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-webapp
+  namespace: sample-webapp
+  labels:
+    app: sample-webapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sample-webapp
+  template:
+    metadata:
+      labels:
+        app: sample-webapp
+    spec:
+      imagePullSecrets:
+        - name: ocir-auth
+      containers:
+        - name: sample-webapp
+          image: <OCIR_REGISTRY>/<TENANCY_NAMESPACE>/sample_webapp:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          resources:
+            requests:
+              cpu: "200m"
+              memory: "256Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
