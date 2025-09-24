@@ -468,18 +468,12 @@ Use these locally to avoid repeating:
 
 ```bash
 export OCIR_REGISTRY=ap-mumbai-1.ocir.io
-export TENANCY_NS=bmrfukqjgu2c
-export OCI_USER="oracleidentitycloudservice/sraj@forbesmarshall.com"
-export AUTH_TOKEN="rG}EiucRPew76}kvdvAB"
-export EMAIL="sraj@forbesmarshall.com"
+export TENANCY_NS=<Compartment OCID>
+export OCI_USER="oracleidentitycloudservice/<Username>"
+export AUTH_TOKEN="<Auth Token>"
+export EMAIL="<Email>"
 export IMAGE="${OCIR_REGISTRY}/${TENANCY_NS}/sample_webapp:latest"
 ```
 
 ---
 
-If you want, I can:
-
-* Generate a ready-to-run `oke_deploy.sh` script that performs secret creation, manifest templating (replaces image), `kubectl apply`, waits for rollout, and prints the LoadBalancer IP.
-* Add a `dev` Dockerfile variant (for hot-reload with volumes + Django runserver) and the commands to use it.
-
-Which would you like next?
